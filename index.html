@@ -17,20 +17,28 @@
       <h1>Vue Styling</h1>
     </header>
     <section id="assignment">
-      <!-- 1) Fetch the user input and use it as a CSS class -->
-      <!-- The entered class should be added to the below paragraph -->
-      <input type="text" />
-      <!-- (available classes: "user1", "user2") -->
-      <p>
-        Style me!
+      <input
+        v-model="inputValue"
+        @keydown.enter="saveClass"
+        type="text"
+        placeholder="'user1' or 'user2' only"
+      />
+      <p :class="userStyleClasses">
+        {{ user1Class || user2Class ? 'Good job!' : 'This is not \'user1\' or "user2"'}}
       </p>
-      <button>Toggle Paragraph</button>
-      <!-- 2) Use the "visible" and "hidden" classes to show/ hide the above paragraph -->
-      <!-- Clicking the button should toggle between the two options -->
 
-      <!-- 3) Add dynamic inline styling to the below paragraph and let the user enter a background-color -->
-      <input type="text" />
-      <p>Style me inline!</p>
+      <button @click="toggleP">Toggle Paragraph</button>
+      <input
+        type="text"
+        placeholder="Write existing color"
+        v-model="colorInputValue"
+      />
+      <p
+        :class="visibilityStyleClasses"
+        :style="{ backgroundColor: colorInputValue, }"
+      >
+        Style me inline!
+      </p>
     </section>
   </body>
 </html>
